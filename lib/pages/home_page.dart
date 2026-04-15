@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'blog_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -28,11 +30,31 @@ class _HomePageState extends State<HomePage> {
 
   static const categories = [
     _CategoryData('Benih Sayuran', '1 Produk', Color(0xFF0C8F53), Icons.eco),
-    _CategoryData('Benih Buah', '3 Produk', Color(0xFFE1B61B), Icons.local_florist),
+    _CategoryData(
+      'Benih Buah',
+      '3 Produk',
+      Color(0xFFE1B61B),
+      Icons.local_florist,
+    ),
     _CategoryData('Benih Padi', '2 Produk', Color(0xFFD2BD7A), Icons.grass),
-    _CategoryData('Benih Bumbu', '2 Produk', Color(0xFF5A8B1A), Icons.spa_outlined),
-    _CategoryData('Benih Umbi', '1 Produk', Color(0xFF8DAA1A), Icons.agriculture),
-    _CategoryData('Benih Herbal', '1 Produk', Color(0xFFC5AA31), Icons.energy_savings_leaf),
+    _CategoryData(
+      'Benih Bumbu',
+      '2 Produk',
+      Color(0xFF5A8B1A),
+      Icons.spa_outlined,
+    ),
+    _CategoryData(
+      'Benih Umbi',
+      '1 Produk',
+      Color(0xFF8DAA1A),
+      Icons.agriculture,
+    ),
+    _CategoryData(
+      'Benih Herbal',
+      '1 Produk',
+      Color(0xFFC5AA31),
+      Icons.energy_savings_leaf,
+    ),
   ];
 
   static const products = [
@@ -56,34 +78,38 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _topBar(),
-                    _topTabs(),
-                    _heroBanner(),
-                    const SizedBox(height: 2),
-                    _sectionTitle('Belanja Berdasarkan Kategori'),
-                    _categoryGrid(),
-                    const SizedBox(height: 18),
-                    _sectionTitle('Rekomendasi Benih Berkualitas'),
-                    _productRow(products),
-                    const SizedBox(height: 8),
-                    _headline(),
-                    _benefits(),
-                    _bestSeedHeader(),
-                    _bestSeedChips(),
-                    const SizedBox(height: 12),
-                    _productRow(products.reversed.toList()),
-                    _footer(),
-                  ],
-                ),
-              ),
+              child: selectedNav == 3 ? const BlogPage() : _homeContent(),
             ),
             _bottomNav(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _homeContent() {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _topBar(),
+          _topTabs(),
+          _heroBanner(),
+          const SizedBox(height: 2),
+          _sectionTitle('Belanja Berdasarkan Kategori'),
+          _categoryGrid(),
+          const SizedBox(height: 18),
+          _sectionTitle('Rekomendasi Benih Berkualitas'),
+          _productRow(products),
+          const SizedBox(height: 8),
+          _headline(),
+          _benefits(),
+          _bestSeedHeader(),
+          _bestSeedChips(),
+          const SizedBox(height: 12),
+          _productRow(products.reversed.toList()),
+          _footer(),
+        ],
       ),
     );
   }
@@ -97,9 +123,18 @@ class _HomePageState extends State<HomePage> {
             text: const TextSpan(
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
               children: [
-                TextSpan(text: 'FLO', style: TextStyle(color: Color(0xFF0B8F55))),
-                TextSpan(text: 'M', style: TextStyle(color: Color(0xFF8CC63F))),
-                TextSpan(text: 'ART', style: TextStyle(color: Color(0xFF0B8F55))),
+                TextSpan(
+                  text: 'FLO',
+                  style: TextStyle(color: Color(0xFF0B8F55)),
+                ),
+                TextSpan(
+                  text: 'M',
+                  style: TextStyle(color: Color(0xFF8CC63F)),
+                ),
+                TextSpan(
+                  text: 'ART',
+                  style: TextStyle(color: Color(0xFF0B8F55)),
+                ),
               ],
             ),
           ),
@@ -183,7 +218,9 @@ class _HomePageState extends State<HomePage> {
             left: 0,
             right: 0,
             child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(24),
+              ),
               child: CustomPaint(
                 size: const Size(double.infinity, 26),
                 painter: _BannerPainter(),
@@ -232,7 +269,11 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 10),
                     const Text(
                       'Temukan benih tanaman terbaik dengan proses belanja yang mudah dan efisien.',
-                      style: TextStyle(fontSize: 12, color: Color(0xFF67706B), height: 1.35),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFF67706B),
+                        height: 1.35,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
@@ -244,11 +285,17 @@ class _HomePageState extends State<HomePage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 10,
+                        ),
                       ),
                       child: const Text(
                         'Belanja',
-                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ],
@@ -367,14 +414,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 6),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.18),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         item.total,
-                        style: const TextStyle(fontSize: 9, color: Colors.white),
+                        style: const TextStyle(
+                          fontSize: 9,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -420,9 +473,21 @@ class _HomePageState extends State<HomePage> {
 
   Widget _benefits() {
     final items = [
-      ('Benih Tepat Guna', 'Bibit tanaman sehat, mudah tumbuh untuk hasil terbaik', Icons.spa_outlined),
-      ('Pengiriman Aman', 'Pengemasan aman menjaga kualitas selama pengiriman', Icons.local_shipping_outlined),
-      ('Kualitas Terjamin', 'Produk tersedia berkualitas dan terpercaya', Icons.verified_outlined),
+      (
+        'Benih Tepat Guna',
+        'Bibit tanaman sehat, mudah tumbuh untuk hasil terbaik',
+        Icons.spa_outlined,
+      ),
+      (
+        'Pengiriman Aman',
+        'Pengemasan aman menjaga kualitas selama pengiriman',
+        Icons.local_shipping_outlined,
+      ),
+      (
+        'Kualitas Terjamin',
+        'Produk tersedia berkualitas dan terpercaya',
+        Icons.verified_outlined,
+      ),
     ];
 
     return Padding(
@@ -448,13 +513,20 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         item.$1,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 6),
                       Text(
                         item.$2,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 11, color: Color(0xFF6F7671), height: 1.3),
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Color(0xFF6F7671),
+                          height: 1.3,
+                        ),
                       ),
                     ],
                   ),
@@ -477,7 +549,10 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ),
           ),
-          Text('Lihat Semua', style: TextStyle(fontSize: 11, color: Color(0xFF646B67))),
+          Text(
+            'Lihat Semua',
+            style: TextStyle(fontSize: 11, color: Color(0xFF646B67)),
+          ),
         ],
       ),
     );
@@ -522,7 +597,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: Colors.white),
+              style: const TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 8),
             ...items.map(
@@ -530,7 +609,11 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Text(
                   item,
-                  style: const TextStyle(fontSize: 10, color: Color(0xFFD8F1E3), height: 1.3),
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: Color(0xFFD8F1E3),
+                    height: 1.3,
+                  ),
                 ),
               ),
             ),
@@ -551,24 +634,47 @@ class _HomePageState extends State<HomePage> {
             text: const TextSpan(
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
               children: [
-                TextSpan(text: 'FLO', style: TextStyle(color: Colors.white)),
-                TextSpan(text: 'M', style: TextStyle(color: Color(0xFFBFE869))),
-                TextSpan(text: 'ART', style: TextStyle(color: Colors.white)),
+                TextSpan(
+                  text: 'FLO',
+                  style: TextStyle(color: Colors.white),
+                ),
+                TextSpan(
+                  text: 'M',
+                  style: TextStyle(color: Color(0xFFBFE869)),
+                ),
+                TextSpan(
+                  text: 'ART',
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
           const SizedBox(height: 6),
           const Text(
             'Mari hijaukan tanaman yang sehat\nuntuk masa depan yang lebih baik',
-            style: TextStyle(fontSize: 11, color: Color(0xFFD8F1E3), height: 1.35),
+            style: TextStyle(
+              fontSize: 11,
+              color: Color(0xFFD8F1E3),
+              height: 1.35,
+            ),
           ),
           const SizedBox(height: 16),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              col('Layanan', ['Belanja Tanaman', 'Benih Murah', 'Filter Kecocokan', 'Start Seller Up']),
+              col('Layanan', [
+                'Belanja Tanaman',
+                'Benih Murah',
+                'Filter Kecocokan',
+                'Start Seller Up',
+              ]),
               const SizedBox(width: 12),
-              col('Bantuan', ['Cara Belanja', 'Cara Menjual', 'Pengiriman', 'Kebijakan']),
+              col('Bantuan', [
+                'Cara Belanja',
+                'Cara Menjual',
+                'Pengiriman',
+                'Kebijakan',
+              ]),
               const SizedBox(width: 12),
               col('Ikuti Kami', ['@Flomart.id', '/Flomart.id', '@Flomart.id']),
             ],
@@ -589,7 +695,13 @@ class _HomePageState extends State<HomePage> {
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-        boxShadow: [BoxShadow(color: Color(0x14000000), blurRadius: 16, offset: Offset(0, -4))],
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 16,
+            offset: Offset(0, -4),
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -603,7 +715,13 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(item.$2, size: active ? 34 : 31, color: active ? const Color(0xFF0B8F55) : const Color(0xFF1F2523)),
+                  Icon(
+                    item.$2,
+                    size: active ? 34 : 31,
+                    color: active
+                        ? const Color(0xFF0B8F55)
+                        : const Color(0xFF1F2523),
+                  ),
                   const SizedBox(height: 4),
                   Text(
                     item.$1,
@@ -611,7 +729,9 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: active ? FontWeight.w700 : FontWeight.w500,
-                      color: active ? const Color(0xFF0B8F55) : const Color(0xFF1F2523),
+                      color: active
+                          ? const Color(0xFF0B8F55)
+                          : const Color(0xFF1F2523),
                     ),
                   ),
                 ],
@@ -636,7 +756,13 @@ class _ProductCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [BoxShadow(color: Color(0x11000000), blurRadius: 10, offset: Offset(0, 4))],
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x11000000),
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.all(8),
@@ -655,12 +781,28 @@ class _ProductCard extends StatelessWidget {
                     right: 6,
                     top: 6,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Row(
                         children: [
-                          const Icon(Icons.star_rounded, size: 10, color: Color(0xFFE0B92A)),
-                          Text('${data.rating}', style: const TextStyle(fontSize: 8, fontWeight: FontWeight.w700)),
+                          const Icon(
+                            Icons.star_rounded,
+                            size: 10,
+                            color: Color(0xFFE0B92A),
+                          ),
+                          Text(
+                            '${data.rating}',
+                            style: const TextStyle(
+                              fontSize: 8,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -669,21 +811,31 @@ class _ProductCard extends StatelessWidget {
                     alignment: Alignment.bottomLeft,
                     child: Padding(
                       padding: EdgeInsets.all(8),
-                      child: Icon(Icons.eco_rounded, color: Colors.white, size: 28),
+                      child: Icon(
+                        Icons.eco_rounded,
+                        color: Colors.white,
+                        size: 28,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 8),
-            Text(data.title, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w700)),
+            Text(
+              data.title,
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w700),
+            ),
             const Spacer(),
             Row(
               children: [
                 Expanded(
                   child: Text(
                     data.price,
-                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w800),
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
                 Container(
@@ -693,7 +845,11 @@ class _ProductCard extends StatelessWidget {
                     color: const Color(0xFFE0B92A),
                     borderRadius: BorderRadius.circular(9),
                   ),
-                  child: const Icon(Icons.add, size: 13, color: Color(0xFF2B2D2D)),
+                  child: const Icon(
+                    Icons.add,
+                    size: 13,
+                    color: Color(0xFF2B2D2D),
+                  ),
                 ),
               ],
             ),
@@ -719,7 +875,10 @@ class _FarmerArt extends StatelessWidget {
             child: Container(
               width: 82,
               height: 82,
-              decoration: const BoxDecoration(color: Color(0xFFD9E9A2), shape: BoxShape.circle),
+              decoration: const BoxDecoration(
+                color: Color(0xFFD9E9A2),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(
@@ -727,7 +886,10 @@ class _FarmerArt extends StatelessWidget {
             child: Container(
               width: 42,
               height: 42,
-              decoration: const BoxDecoration(color: Color(0xFFEAAF73), shape: BoxShape.circle),
+              decoration: const BoxDecoration(
+                color: Color(0xFFEAAF73),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(
@@ -750,7 +912,11 @@ class _FarmerArt extends StatelessWidget {
                 color: const Color(0xFF768B4D),
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(Icons.agriculture_rounded, size: 34, color: Colors.white),
+              child: const Icon(
+                Icons.agriculture_rounded,
+                size: 34,
+                color: Colors.white,
+              ),
             ),
           ),
           Positioned(
@@ -765,10 +931,26 @@ class _FarmerArt extends StatelessWidget {
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(Icons.energy_savings_leaf, size: 15, color: Color(0xFF2F8B45)),
-                  Icon(Icons.energy_savings_leaf, size: 15, color: Color(0xFF2F8B45)),
-                  Icon(Icons.energy_savings_leaf, size: 15, color: Color(0xFF2F8B45)),
-                  Icon(Icons.energy_savings_leaf, size: 15, color: Color(0xFF2F8B45)),
+                  Icon(
+                    Icons.energy_savings_leaf,
+                    size: 15,
+                    color: Color(0xFF2F8B45),
+                  ),
+                  Icon(
+                    Icons.energy_savings_leaf,
+                    size: 15,
+                    color: Color(0xFF2F8B45),
+                  ),
+                  Icon(
+                    Icons.energy_savings_leaf,
+                    size: 15,
+                    color: Color(0xFF2F8B45),
+                  ),
+                  Icon(
+                    Icons.energy_savings_leaf,
+                    size: 15,
+                    color: Color(0xFF2F8B45),
+                  ),
                 ],
               ),
             ),
@@ -785,8 +967,18 @@ class _BannerPainter extends CustomPainter {
     final paint = Paint()..color = const Color(0xFF8FD23D);
     final path = Path()
       ..lineTo(0, size.height)
-      ..quadraticBezierTo(size.width * 0.18, 2, size.width * 0.34, size.height * 0.82)
-      ..quadraticBezierTo(size.width * 0.52, size.height * 1.2, size.width * 0.7, size.height * 0.55)
+      ..quadraticBezierTo(
+        size.width * 0.18,
+        2,
+        size.width * 0.34,
+        size.height * 0.82,
+      )
+      ..quadraticBezierTo(
+        size.width * 0.52,
+        size.height * 1.2,
+        size.width * 0.7,
+        size.height * 0.55,
+      )
       ..quadraticBezierTo(size.width * 0.88, 1, size.width, size.height * 0.78)
       ..lineTo(size.width, 0)
       ..close();
